@@ -1,0 +1,49 @@
+---
+- name: update repo-cache for debian/ubuntu
+  become: true
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: install requirements to add new package repos
+  become: true
+  apt:
+    name:
+      - lsb-release
+      - wget
+      - debian-goodies
+      - apt-dater-host
+      - apt-transport-https
+    state: present
+
+- name: add rspam repo key
+  become: true
+  ansible.builtin.apt_key:
+    url: 'https://rspamd.com/apt-stable/gpg.key'
+    state: present
+  notify: sudo apt update
+
+- name: add rspamd repo
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
+    state: present
+    mode: 0644
+  notify: sudo apt update
+
+- name: add rspamd srv-repo
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb-src https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
+    state: present
+    mode: 0644
+  notify: sudo apt update
+
+- name: run update if something changed
+  meta: flush_handlers
+
+- name: install rspamd
+  become: true
+  apt:
+    name: rspamd
+    state: present

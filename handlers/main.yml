@@ -1,0 +1,5 @@
+---
+- name: sudo apt update
+  become: true
+  apt:
+    update_cache: true
