@@ -47,3 +47,31 @@
     src: "{{ rspamd__multimap_conf_file }}"
     dest: "{{ rspamd__config_path }}multimap.conf"
     mode: '0640'
+
+- name: multimap whitelist_ip.map
+  become: true
+  ansible.builtin.copy:
+    src: "{{ rspamd__whitelist_ip_file }}"
+    dest: "{{ rspamd__config_path }}whitelist_ip.map"
+    mode: '0640'
+
+- name: multimap whitelist_from.map
+  become: true
+  ansible.builtin.copy:
+    src: "{{ rspamd__whitelist_from_file }}"
+    dest: "{{ rspamd__config_path }}whitelist_from.map"
+    mode: '0640'
+
+- name: multimap blacklist_ip.map
+  become: true
+  ansible.builtin.copy:
+    src: "{{ rspamd__blacklist_ip_file }}"
+    dest: "{{ rspamd__config_path }}blacklist_ip.map"
+    mode: '0640'
+
+- name: multimap blacklist_from.map
+  become: true
+  ansible.builtin.copy:
+    src: "{{ rspamd__blacklist_from_file }}"
+    dest: "{{ rspamd__config_path }}blacklist_from.map"
+    mode: '0640'
