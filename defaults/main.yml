@@ -1,3 +1,9 @@
 ---
 # should we do a version check? (recomended)
 submodules_versioncheck: false
+
+# rspamd config
+rspamd__config_path: '/etc/rspamd/local.d/'
+rspamd__admin_password: 'ChangeMePl3ase'
+rspamd__redis_server: '127.0.0.1'
+rspamd__multimap_conf_file: 'templates/multimap.conf.j2'

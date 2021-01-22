@@ -1,0 +1,49 @@
+---
+- name: Einstellung des Worker controllers
+  become: true
+  ansible.builtin.template:
+    src: templates/worker-controller.inc.j2
+    dest: "{{ rspamd__config_path }}worker-controller.inc"
+    mode: '0640'
+
+- name: Einstellung des logging
+  become: true
+  ansible.builtin.copy:
+    src: files/logging.inc
+    dest: "{{ rspamd__config_path }}logging.inc"
+    mode: '0640'
+
+- name: milter_headers.conf
+  become: true
+  ansible.builtin.copy:
+    src: files/milter_headers.conf
+    dest: "{{ rspamd__config_path }}milter_headers.conf"
+    mode: '0640'
+
+- name: milter_headers.conf
+  become: true
+  ansible.builtin.copy:
+    src: files/classifier-bayes.conf
+    dest: "{{ rspamd__config_path }}classifier-bayes.conf"
+    mode: '0640'
+
+- name: Einstellug der redis.conf
+  become: true
+  ansible.builtin.template:
+    src: templates/redis.conf.j2
+    dest: "{{ rspamd__config_path }}redis.conf"
+    mode: '0640'
+
+- name: classifier-bayes.conf
+  become: true
+  ansible.builtin.copy:
+    src: files/classifier-bayes.conf
+    dest: "{{ rspamd__config_path }}classifier-bayes.conf"
+    mode: '0640'
+
+- name: Einstellug der eignene black/whitelist
+  become: true
+  ansible.builtin.copy:
+    src: "{{ rspamd__multimap_conf_file }}"
+    dest: "{{ rspamd__config_path }}multimap.conf"
+    mode: '0640'

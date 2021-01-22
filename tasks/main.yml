@@ -5,3 +5,6 @@
 - name: add apt repos and install rspamd
   include_tasks: packages.yml
   when: ansible_os_family == 'Debian'
+
+- name: configure rspamd
+  include_tasks: configure.yml
