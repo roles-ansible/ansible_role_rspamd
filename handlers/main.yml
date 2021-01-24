@@ -3,3 +3,9 @@
   become: true
   apt:
     update_cache: true
+
+- name: systemctl restart rspamd
+  become: true
+  ansible.builtin.systemd:
+    name: 'rspamd'
+    state: 'reloaded'

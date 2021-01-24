@@ -7,6 +7,7 @@
     mode: '0640'
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
+  notify: systemctl restart rspamd
 
 - name: Einstellung des logging
   become: true
@@ -16,6 +17,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: milter_headers.conf
   become: true
@@ -25,6 +27,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: milter_headers.conf
   become: true
@@ -34,6 +37,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: Einstellug der redis.conf
   become: true
@@ -43,6 +47,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: classifier-bayes.conf
   become: true
@@ -52,6 +57,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: Einstellug der eignene black/whitelist
   become: true
@@ -61,6 +67,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: multimap whitelist_ip.map
   become: true
@@ -70,6 +77,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: multimap whitelist_from.map
   become: true
@@ -79,6 +87,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: multimap blacklist_ip.map
   become: true
@@ -88,6 +97,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
 
 - name: multimap blacklist_from.map
   become: true
@@ -97,3 +107,4 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
+  notify: systemctl restart rspamd
