@@ -6,6 +6,8 @@ submodules_versioncheck: false
 rspamd__config_path: '/etc/rspamd/local.d/'
 rspamd__admin_password: 'ChangeMePl3ase'
 rspamd__redis_server: '127.0.0.1'
+rspamd__default_owner: '_rspamd'
+rspamd__default_group: '_rspamd'
 
 # rspamd config file path
 rspamd__multimap_conf_file: 'files/multimap.conf'

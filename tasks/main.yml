@@ -8,3 +8,6 @@
 
 - name: configure rspamd
   include_tasks: configure.yml
+
+- name: rspamd dkim signing
+  include_tasks: dkim.yml

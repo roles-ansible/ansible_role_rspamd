@@ -5,12 +5,16 @@
     src: templates/worker-controller.inc.j2
     dest: "{{ rspamd__config_path }}worker-controller.inc"
     mode: '0640'
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
 
 - name: Einstellung des logging
   become: true
   ansible.builtin.copy:
     src: files/logging.inc
     dest: "{{ rspamd__config_path }}logging.inc"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: milter_headers.conf
@@ -18,6 +22,8 @@
   ansible.builtin.copy:
     src: files/milter_headers.conf
     dest: "{{ rspamd__config_path }}milter_headers.conf"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: milter_headers.conf
@@ -25,6 +31,8 @@
   ansible.builtin.copy:
     src: files/classifier-bayes.conf
     dest: "{{ rspamd__config_path }}classifier-bayes.conf"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: Einstellug der redis.conf
@@ -32,6 +40,8 @@
   ansible.builtin.template:
     src: templates/redis.conf.j2
     dest: "{{ rspamd__config_path }}redis.conf"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: classifier-bayes.conf
@@ -39,6 +49,8 @@
   ansible.builtin.copy:
     src: files/classifier-bayes.conf
     dest: "{{ rspamd__config_path }}classifier-bayes.conf"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: Einstellug der eignene black/whitelist
@@ -46,6 +58,8 @@
   ansible.builtin.copy:
     src: "{{ rspamd__multimap_conf_file }}"
     dest: "{{ rspamd__config_path }}multimap.conf"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: multimap whitelist_ip.map
@@ -53,6 +67,8 @@
   ansible.builtin.copy:
     src: "{{ rspamd__whitelist_ip_file }}"
     dest: "{{ rspamd__config_path }}whitelist_ip.map"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: multimap whitelist_from.map
@@ -60,6 +76,8 @@
   ansible.builtin.copy:
     src: "{{ rspamd__whitelist_from_file }}"
     dest: "{{ rspamd__config_path }}whitelist_from.map"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: multimap blacklist_ip.map
@@ -67,6 +85,8 @@
   ansible.builtin.copy:
     src: "{{ rspamd__blacklist_ip_file }}"
     dest: "{{ rspamd__config_path }}blacklist_ip.map"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
 
 - name: multimap blacklist_from.map
@@ -74,4 +94,6 @@
   ansible.builtin.copy:
     src: "{{ rspamd__blacklist_from_file }}"
     dest: "{{ rspamd__config_path }}blacklist_from.map"
+    owner: "{{ rspamd__default_owner }}"
+    group: "{{ rspamd__default_group }}"
     mode: '0640'
