@@ -1,0 +1,6 @@
+---
+- name: install redis backend
+  become: true
+  apt:
+    name: redis
+    state: present
