@@ -1,13 +1,19 @@
 ---
-- name: Einstellung des Worker controllers
-  become: true
-  ansible.builtin.template:
-    src: templates/worker-controller.inc.j2
-    dest: "{{ rspamd__config_path }}worker-controller.inc"
-    mode: '0640'
-    owner: "{{ rspamd__default_owner }}"
-    group: "{{ rspamd__default_group }}"
-  notify: systemctl restart rspamd
+- name: rspamd password generation
+  block:
+    - name: configure rspamd password
+      become: true
+      ansible.builtin.template:
+        src: templates/worker-controller.inc.j2
+        dest: "{{ rspamd__config_path }}worker-controller.inc"
+        mode: '0640'
+        owner: "{{ rspamd__default_owner }}"
+        group: "{{ rspamd__default_group }}"
+      notify: systemctl restart rspamd
+  rescue:
+    - name: you have to install passlib
+      fail:
+        msg: 'I caught an error. Maybe you have to install passlib via pip3'
 
 - name: Einstellung des logging
   become: true

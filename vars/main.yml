@@ -1,6 +1,7 @@
 ---
 # versionscheck
-playbook_version_number: 6   # should be a integer
+playbook_version_number: 7   # should be a integer
 playbook_version_path: 'do1jlr.rspamd.version'
 
-_rspamd__admin_password: "{{ rspamd__admin_password | password_hash('bcrypt') }}"
+# https://github.com/ansible/ansible/issues/36129
+rspamd__admin_password_with_salt: "{{ rspamd__admin_password | password_hash('bcrypt', ('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890' | shuffle(seed=inventory_hostname) | join)[:21] + ('Oeu' | shuffle(seed=inventory_hostname) | join)[1], rounds=9) }}"
