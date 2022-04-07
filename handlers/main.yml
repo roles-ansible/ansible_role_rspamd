@@ -1,7 +1,7 @@
 ---
 - name: sudo apt update
   become: true
-  apt:
+  ansible.builtin.apt:
     update_cache: true
 
 - name: systemctl restart rspamd

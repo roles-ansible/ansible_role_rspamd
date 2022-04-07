@@ -1,13 +1,13 @@
 ---
 - name: update repo-cache for debian/ubuntu
   become: true
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
 
 - name: install requirements to add new package repos
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - lsb-release
       - wget
@@ -40,10 +40,10 @@
   notify: sudo apt update
 
 - name: run update if something changed
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: install rspamd
   become: true
-  apt:
+  ansible.builtin.apt:
     name: rspamd
     state: present
