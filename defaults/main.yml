@@ -10,8 +10,8 @@ rspamd__default_owner: '_rspamd'
 rspamd__default_group: '_rspamd'
 
 # configure options
-rspamd__configure_redis: false
-rspamd__configure_dkim: false
+rspamd__configure_redis: true
+rspamd__configure_dkim: true
 
 # rspamd config file path
 rspamd__multimap_conf_file: 'files/multimap.conf'

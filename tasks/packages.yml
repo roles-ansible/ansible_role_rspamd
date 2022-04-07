@@ -47,3 +47,4 @@
   ansible.builtin.apt:
     name: rspamd
     state: present
+  notify: systemctl restart rspamd
