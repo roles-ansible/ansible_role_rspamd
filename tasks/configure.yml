@@ -12,7 +12,7 @@
       notify: systemctl restart rspamd
   rescue:
     - name: you have to install passlib
-      fail:
+      ansible.builtin.fail:
         msg: 'I caught an error. Maybe you have to install passlib via pip3'
 
 - name: Einstellung des logging

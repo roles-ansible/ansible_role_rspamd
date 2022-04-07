@@ -11,6 +11,8 @@
 
 - name: rspamd dkim signing
   include_tasks: dkim.yml
+  when: rspamd__configure_dkim | bool
 
 - name: redis backend
   include_tasks: redis.yml
+  when: rspamd__configure_redis | bool

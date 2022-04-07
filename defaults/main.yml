@@ -9,6 +9,10 @@ rspamd__redis_server: '127.0.0.1'
 rspamd__default_owner: '_rspamd'
 rspamd__default_group: '_rspamd'
 
+# configure options
+rspamd__configure_redis: true
+rspamd__configure_dkim: true
+
 # rspamd config file path
 rspamd__multimap_conf_file: 'files/multimap.conf'
 rspamd__whitelist_ip_file: 'files/whitelist_ip.map'

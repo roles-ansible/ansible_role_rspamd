@@ -1,6 +1,6 @@
 ---
 - name: install redis backend
   become: true
-  apt:
+  ansible.builtin.apt:
     name: redis
     state: present
