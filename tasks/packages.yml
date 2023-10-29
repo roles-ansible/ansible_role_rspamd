@@ -23,10 +23,19 @@
     state: present
   notify: sudo apt update
 
+- name: Download /etc/apt/keyrings/rspamd.gpg
+  become: true
+  ansible.builtin.get_url:
+    url: '//rspamd.com/apt-stable/gpg.key'
+    dest: '/etc/apt/keyrings/rspamd.gpg'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+
 - name: add rspamd repo
   become: true
   ansible.builtin.apt_repository:
-    repo: "deb https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
+    repo: "deb [signed-by=/etc/apt/keyrings/rspamd.gpg] https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
     state: present
     mode: 0644
   notify: sudo apt update
@@ -34,7 +43,7 @@
 - name: add rspamd srv-repo
   become: true
   ansible.builtin.apt_repository:
-    repo: "deb-src https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
+    repo: "deb-src [signed-by=/etc/apt/keyrings/rspamd.gpg] https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
     state: present
     mode: 0644
   notify: sudo apt update
