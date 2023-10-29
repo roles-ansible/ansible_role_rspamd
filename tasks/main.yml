@@ -13,10 +13,11 @@
   ansible.builtin.include_tasks:
     file: 'configure.yml'
 
-- name: Rspamd dkim signing
+- name: Rspamd dkim signing (TODO)
   ansible.builtin.include_tasks:
     file: 'dkim.yml'
   when: rspamd__configure_dkim | bool
+
 
 - name: Redis backend
   ansible.builtin.include_tasks:
