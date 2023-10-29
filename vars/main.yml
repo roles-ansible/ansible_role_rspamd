@@ -1,6 +1,6 @@
 ---
 # versionscheck
-playbook_version_number: 10
+playbook_version_number: 11
 playbook_version_path: 'do1jlr.rspamd.version'
 
 # https://github.com/ansible/ansible/issues/36129
