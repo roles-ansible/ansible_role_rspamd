@@ -1,7 +1,7 @@
 ---
-- name: rspamd password generation
+- name: Rspamd password generation
   block:
-    - name: configure rspamd password
+    - name: Configure rspamd password
       become: true
       ansible.builtin.template:
         src: templates/worker-controller.inc.j2
@@ -9,9 +9,9 @@
         mode: '0640'
         owner: "{{ rspamd__default_owner }}"
         group: "{{ rspamd__default_group }}"
-      notify: systemctl restart rspamd
+      notify: Run systemctl restart rspamd
   rescue:
-    - name: you have to install passlib
+    - name: You have to install passlib
       ansible.builtin.fail:
         msg: 'I caught an error. Maybe you have to install passlib via pip3'
 
@@ -23,9 +23,9 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
-- name: milter_headers.conf
+- name: Configure milter_headers.conf
   become: true
   ansible.builtin.copy:
     src: files/milter_headers.conf
@@ -33,9 +33,9 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
-- name: milter_headers.conf
+- name: Configure classifier-bayes.conf
   become: true
   ansible.builtin.copy:
     src: files/classifier-bayes.conf
@@ -43,7 +43,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
 - name: Einstellug der redis.conf
   become: true
@@ -53,9 +53,9 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
-- name: classifier-bayes.conf
+- name: Modify classifier-bayes.conf
   become: true
   ansible.builtin.copy:
     src: files/classifier-bayes.conf
@@ -63,7 +63,7 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
 - name: Einstellug der eignene black/whitelist
   become: true
@@ -73,9 +73,9 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
-- name: multimap whitelist_ip.map
+- name: Multimap whitelist_ip.map
   become: true
   ansible.builtin.copy:
     src: "{{ rspamd__whitelist_ip_file }}"
@@ -83,9 +83,9 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
-- name: multimap whitelist_from.map
+- name: Multimap whitelist_from.map
   become: true
   ansible.builtin.copy:
     src: "{{ rspamd__whitelist_from_file }}"
@@ -93,9 +93,9 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
-- name: multimap blacklist_ip.map
+- name: Multimap blacklist_ip.map
   become: true
   ansible.builtin.copy:
     src: "{{ rspamd__blacklist_ip_file }}"
@@ -103,9 +103,9 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd
 
-- name: multimap blacklist_from.map
+- name: Multimap blacklist_from.map
   become: true
   ansible.builtin.copy:
     src: "{{ rspamd__blacklist_from_file }}"
@@ -113,4 +113,4 @@
     owner: "{{ rspamd__default_owner }}"
     group: "{{ rspamd__default_group }}"
     mode: '0640'
-  notify: systemctl restart rspamd
+  notify: Run systemctl restart rspamd

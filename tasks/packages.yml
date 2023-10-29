@@ -1,50 +1,51 @@
 ---
-- name: update repo-cache for debian/ubuntu
+- name: Update repo-cache for debian/ubuntu
   become: true
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
 
-- name: install requirements to add new package repos
+- name: Install requirements to add new package repos
   become: true
   ansible.builtin.apt:
-    name:
-      - lsb-release
-      - wget
-      - debian-goodies
-      - apt-dater-host
-      - apt-transport-https
-    state: present
+    name: "{{ item }}"
+    state: 'present'
+  loop:
+    - 'lsb-release'
+    - 'wget'
+    - 'debian-goodies'
+    - 'apt-dater-host'
+    - 'apt-transport-https'
 
-- name: add rspam repo key
+- name: Add rspam repo key
   become: true
   ansible.builtin.apt_key:
     url: 'https://rspamd.com/apt-stable/gpg.key'
-    state: present
-  notify: sudo apt update
+    state: 'present'
+  notify: Run sudo apt update
 
-- name: add rspamd repo
+- name: Add rspamd repo
   become: true
   ansible.builtin.apt_repository:
     repo: "deb https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
-    state: present
-    mode: 0644
-  notify: sudo apt update
+    state: 'present'
+    mode: '0644'
+  notify: Run sudo apt update
 
-- name: add rspamd srv-repo
+- name: Add rspamd srv-repo
   become: true
   ansible.builtin.apt_repository:
     repo: "deb-src https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
-    state: present
-    mode: 0644
-  notify: sudo apt update
+    state: 'present'
+    mode: '0644'
+  notify: Run sudo apt update
 
-- name: run update if something changed
+- name: Run update if something changed
   ansible.builtin.meta: flush_handlers
 
-- name: install rspamd
+- name: Install rspamd
   become: true
   ansible.builtin.apt:
-    name: rspamd
-    state: present
-  notify: systemctl restart rspamd
+    name: 'rspamd'
+    state: 'present'
+  notify: Run systemctl restart rspamd
