@@ -1,5 +1,5 @@
 ---
-- name: Run optional versioncheck
+- name: Run Optional Versioncheck
   ansible.builtin.include_tasks:
     file: 'versioncheck.yml'
   when: submodules_versioncheck | bool
@@ -18,7 +18,8 @@
     file: 'dkim.yml'
   when: rspamd__configure_dkim | bool
 
-- name: redis backend
+
+- name: Redis backend
   ansible.builtin.include_tasks:
     file: 'redis.yml'
   when: rspamd__configure_redis | bool

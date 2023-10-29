@@ -9,15 +9,15 @@
   become: true
   ansible.builtin.apt:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   loop:
     - 'lsb-release'
     - 'wget'
     - 'debian-goodies'
     - 'apt-dater-host'
-    - #apt-transport-https'
+    - 'apt-transport-https'
 
-- name: add rspam repo key
+- name: Add rspam repo key
   become: true
   ansible.builtin.apt_key:
     url: 'https://rspamd.com/apt-stable/gpg.key'
@@ -38,7 +38,7 @@
   ansible.builtin.apt_repository:
     repo: "deb [signed-by=/etc/apt/keyrings/rspamd.gpg] https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
     state: present
-    mode: 0644
+    mode: '0644'
   notify: Run sudo apt update
 
 - name: Add rspamd srv-repo
@@ -46,7 +46,7 @@
   ansible.builtin.apt_repository:
     repo: "deb-src [signed-by=/etc/apt/keyrings/rspamd.gpg] https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
     state: present
-    mode: 0644
+    mode: '0644'
   notify: Run sudo apt update
 
 - name: Run update if something changed
@@ -55,6 +55,6 @@
 - name: Install rspamd
   become: true
   ansible.builtin.apt:
-    name: rspamd
-    state: present
+    name: 'rspamd'
+    state: 'present'
   notify: Run systemctl restart rspamd
