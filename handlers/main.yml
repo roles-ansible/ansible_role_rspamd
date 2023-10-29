@@ -1,10 +1,10 @@
 ---
-- name: sudo apt update
+- name: Run sudo apt update
   become: true
   ansible.builtin.apt:
     update_cache: true
 
-- name: systemctl restart rspamd
+- name: Run systemctl restart rspamd
   become: true
   ansible.builtin.systemd:
     name: 'rspamd'

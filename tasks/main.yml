@@ -1,18 +1,24 @@
 ---
-- include_tasks: versioncheck.yml
-  when: submodules_versioncheck|bool
+- name: Run optional versioncheck
+  ansible.builtin.include_tasks:
+    file: 'versioncheck.yml'
+  when: submodules_versioncheck | bool
 
-- name: add apt repos and install rspamd
-  include_tasks: packages.yml
+- name: Add apt repos and install rspamd
+  ansible.builtin.include_tasks:
+    file: 'packages.yml'
   when: ansible_os_family == 'Debian'
 
-- name: configure rspamd
-  include_tasks: configure.yml
+- name: Configure rspamd
+  ansible.builtin.include_tasks:
+    file: 'configure.yml'
 
-- name: rspamd dkim signing
-  include_tasks: dkim.yml
+- name: Rspamd dkim signing (TODO)
+  ansible.builtin.include_tasks:
+    file: 'dkim.yml'
   when: rspamd__configure_dkim | bool
 
 - name: redis backend
-  include_tasks: redis.yml
+  ansible.builtin.include_tasks:
+    file: 'redis.yml'
   when: rspamd__configure_redis | bool
