@@ -5,4 +5,4 @@ playbook_version_path: 'do1jlr.rspamd.version'
 
 # https://github.com/ansible/ansible/issues/36129
 # yamllint disable-line rule:line-length
-rspamd__admin_password_with_salt: "{{ rspamd__admin_password | password_hash('bcrypt', ('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890' | shuffle(seed=inventory_hostname) | join)[:21] + ('Oeu' | shuffle(seed=inventory_hostname) | join)[1], rounds=9) }}"
+rspamd__admin_password_with_salt: "{{ rspamd__admin_password | ansible.builtin.password_hash('bcrypt', ('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890' | shuffle(seed=inventory_hostname) | join)[:21] + ('Oeu' | ansible.builtin.shuffle(seed=inventory_hostname) | join)[1], rounds=9) }}"
